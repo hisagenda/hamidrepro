@@ -1,0 +1,19 @@
+az group create \
+    --name myResourceGroup \
+az group create --name myResourceGroup --location eastus2
+az batch account create
+az batch account create --name mybatchaccount --storage-account mystorageaccount --resource-group myResourceGroup --location eastus2
+@@@@@@@��@@�@@@@@@@@@@hell_profile.ps1n@m@l@m@p@s@@@@@@@@@�@@@@@@@a@n@a@g@e@m@e@n@t@.@A@u@t@o@m@a@@@@@@@@@@@@@@@@@t@.@A@u@���B@@���B@@
+az aks get-credentials --resource-group hamid --name repro
+az account set --subscription 35dd0eb3-3864-4c5b-93a6-b4ff7665096b
+az aks get-credentials --resource-group hamid --name repro
+# List all deployments in all namespaces
+kubectl get deployments --all-namespaces=true
+kubectl create namespace ingress-basic
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --namespace ingress-basic \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
